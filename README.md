@@ -6,7 +6,7 @@ Avian reovirus is a 10 segmented double-stranded RNA (dsRNA) virus belonging to 
 
 Data pre-processing:
 
-We will download the raw sequencing data from from the Sequence Read Archive(SRA), NCBI. As the sample often contains high levels of host (avian) DNA, the initial quality assessment of the data will be performed using FASTQC. Following that, the reads will be trimmed for adapter sequences, low-quality region, and short reads. Post-trimming quality will again be assessed using FastQC. 
+We will download the raw sequencing data from the Sequence Read Archive(SRA), NCBI. As the sample often contains high levels of host (avian) DNA, the initial quality assessment of the data will be performed using FASTQC. Following that, the reads will be trimmed for adapter sequences, low-quality region, and short reads. Post-trimming quality will again be assessed using FastQC. 
 
 Mapping
 
