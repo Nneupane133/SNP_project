@@ -1,6 +1,7 @@
-Project proposal: A study of genomic changes in the field strain of Avian Reovirus compared to the vaccine strain. 
+Project proposal for Scripting for Biologist:
+ A study of genomic changes in the field strain of Avian Reovirus compared to the vaccine strain. 
 
-Avian reovirus is a 10 segmented dsRNA virus. During replication, these segments reassort and mutate resulting in new strains of Avian reovirus emerging in the field condition. Determining the genomic structure of this field strain is therefore important for vaccine production. The objective of this project is to find out point mutations, insertions/ deletions (indels) in the Avian Reovirus by comparing the field sample sequence against the reference strains, S1133. This strain of ARV, along with 2408, 1733, SS412 are commonly used for vaccine production. 
+Avian reovirus is a 10 segmented double-stranded RNA (dsRNA) virus belonging to the family Reoviridae. During replications, these genome segmentscan undergo genetic reassortment  and mutate resulting in new strains of Avian reovirus emerging in the field condition. Determining the genomic structure of this field strain is therefore important for vaccine production. The objective of this project is to identify single nucleotide polymorphisms (SNPs), point mutations, insertions/ deletions (indels) in the Avian Reovirus by comparing the field sample sequence against the reference strains, S1133 (primary reference). This strain of ARV, along with 2408, 1733, SS412 are commonly used for vaccine production. 
 
 Data pre-processing:
 We will download the data from from the NCBI. As the sample often contains high levels of host (avian) DNA, the quality of the data will be determined by FASTQC. Following that, the reads will be trimmed for adapter sequence and for the low-quality region and again FASTQC will be used to evaluate the quality. 
