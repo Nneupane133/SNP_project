@@ -20,3 +20,19 @@ The sequence that maps to the Gallus gallus (chicken) genome will be filtered ou
     b.	Automate BLAST/DIAMOND
     c.	Calculate Identity
 
+
+# Feedback
+
+Your proposed project should create opportunities for you to use scripting to
+help automate sequence processing and analyses and make them more reproducible.
+[Biopython](https://biopython.org)
+might be a useful Python package for your project.
+For example, it has
+[modules for interacting iwth NCBI's databases](https://biopython.org/docs/latest/Tutorial/chapter_entrez.html).
+This could allow you to automate searching for and downloading data from the
+SRA.
+This is just an idea (not required).
+
+Try to keep your code as general as possible.
+For example, it would be ideal of your code can easily be used with other
+viruses and hosts.
