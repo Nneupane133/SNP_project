@@ -1,3 +1,4 @@
+#!/usr/bin/env python3 
 import os
 import subprocess
 
@@ -30,8 +31,7 @@ def download_sra_data(srr_id, output_dir):
             "--threads", "4"
         ], check=True)
 
-        # Step 3: Compress the FASTQ files
-        subprocess.run(f"gzip {output_dir}/*.fastq", shell=True, check=True)
+
 
         return "Download and conversion completed successfully!"
 
