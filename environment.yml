@@ -16,3 +16,5 @@ dependencies:
   - bcftools
   - vcftools
   - gffread
+  - ncbi-datasets-cli
+  - unzip
