@@ -1,0 +1,16 @@
+# Ignore genomic fasta files
+*.fna
+*.fasta
+*.fa
+
+# Ignore alignment and sequence data
+*.bam
+*.sam
+*.bai
+*.fastq
+*.gz
+
+# Ignore folders with heavy results
+refmap_results/
+viral_results/
+trimmed_data/
