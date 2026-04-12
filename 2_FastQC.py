@@ -15,7 +15,7 @@ def run_fastqc(input_dir="data", output_dir="fastqc_results", threads=2):
     output_dir : str
         Directory where FastQC output files will be saved.
     threads : int
-        Number of threads to use for FastQC.
+        Number of threads to use for FastQC for parallel processing
 
     Returns
     -------
@@ -27,7 +27,10 @@ def run_fastqc(input_dir="data", output_dir="fastqc_results", threads=2):
     FileNotFoundError
         If input directory or FASTQ files are not found.
     subprocess.CalledProcessError
-        If FastQC command fails during execution.
+        If FastQC command fails during execution
+
+    Output directiry for results
+    Input FASTQ_file
     """
     #Check whether the input directory exists
     if not os.path.isdir(input_dir):
@@ -51,11 +54,6 @@ def run_fastqc(input_dir="data", output_dir="fastqc_results", threads=2):
 
     return f"FastQC completed successfully! Results are in: {output_dir}"
 
-    """
-    Number of threads for parallel processing
-    Output directiry for results
-    Input FASTQ_file
-    
 
 if __name__ == "__main__":
     try:
