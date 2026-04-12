@@ -8,6 +8,10 @@ def run_viral_map(input_dir="refmap_results", output_dir="viral_results",
                   threads=2):
     """Map unmapped paired-end reads to the avian reovirus reference genome.
 
+    This function takes unmapped reads from a previous reference mapping step,
+    aligns them to a viral reference genome using BWA-MEM, converts the output
+    to BAM format, sorts and indexes the BAM file using samtools.
+
     Parameters
     ----------
     input_dir : str
@@ -32,6 +36,18 @@ def run_viral_map(input_dir="refmap_results", output_dir="viral_results",
         If input directory, FASTQ files, or reference FASTA are not found.
     subprocess.CalledProcessError
         If BWA or samtools command fails.
+
+    Notes
+    -----
+    Expected input files:
+    - {sample_id}_unmapped_1.fastq
+    - {sample_id}_unmapped_2.fastq
+
+    Output files:
+    - viral.sam
+    - viral.bam
+    - viral.sorted.bam
+    - viral.sorted.bam.bai
     """
     if not os.path.isdir(input_dir):
         raise FileNotFoundError(f"Input directory not found: {input_dir}")
@@ -86,8 +102,18 @@ def run_viral_map(input_dir="refmap_results", output_dir="viral_results",
 
     return f"Viral mapping completed successfully! Results are in: {output_dir}"
 
+    """
+    Execute viral mapping workflow.
 
-if __name__ == "__main__":
+    This function runs the viral mapping pipeline using default parameters
+    and prints the result or error message.
+
+    Returns
+    -------
+    None
+    """
+
+    if __name__ == "__main__":
     try:
         message = run_viral_map(
             input_dir="refmap_results",
