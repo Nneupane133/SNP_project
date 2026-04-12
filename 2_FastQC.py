@@ -42,14 +42,20 @@ def run_fastqc(input_dir="data", output_dir="fastqc_results", threads=2):
     #Raise an error if no FASTQ files are detected
     if not fastq_files:
         raise FileNotFoundError(f"No FASTQ files found in: {input_dir}")
-
+    #Create the output directory if it does not already exist
     os.makedirs(output_dir, exist_ok=True)
 
+    #Construct the FASTQC command with specified parameters
     cmd = ["fastqc", "-t", str(threads), "-o", output_dir] + fastq_files
     subprocess.run(cmd, check=True)
 
     return f"FastQC completed successfully! Results are in: {output_dir}"
 
+    """
+    Number of threads for parallel processing
+    Output directiry for results
+    Input FASTQ_file
+    
 
 if __name__ == "__main__":
     try:
