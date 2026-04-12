@@ -133,6 +133,18 @@ def map_and_extract_unmapped(
         If input FASTQ files or reference genome are missing.
     subprocess.CalledProcessError
         If any external command (BWA or samtools) fails.
+
+    Notes
+    -----
+    Expected input files are:
+    - `{sample_id}_1.trimmed.fastq`
+    - `{sample_id}_2.trimmed.fastq`
+
+    Output files include:
+    - SAM alignment file
+    - Sorted BAM file
+    - BAM index file
+    - Paired unmapped FASTQ files
     """
     os.makedirs(output_dir, exist_ok=True)
 
@@ -214,8 +226,19 @@ def map_and_extract_unmapped(
         f"Unmapped singletons: {unmapped_single}"
     )
 
+    """
+    Run the reference-mapping and unmapped-read extraction workflow.
 
-if __name__ == "__main__":
+    This function defines example input parameters and executes the
+    `map_and_extract_unmapped` workflow. It is intended as the entry point
+    for command-line execution of the script.
+
+    Returns
+    -------
+    None
+    """
+
+    if __name__ == "__main__":
     sample_id = "SRR12620879"
 
     # Reference file located directly inside SNP_project
