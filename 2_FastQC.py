@@ -4,7 +4,9 @@ import subprocess
 
 
 def run_fastqc(input_dir="data", output_dir="fastqc_results", threads=2):
-    """Run FastQC on paired-end FASTQ files in a directory.
+    """
+    Run FastQC on paired-end FASTQ files in a directory.
+    This function identifies FASTQ or FASTQ.GZ files in the input directory and performs quality control(QC) analysis using the FASTQC tool. 
 
     Parameters
     ----------
@@ -18,24 +20,26 @@ def run_fastqc(input_dir="data", output_dir="fastqc_results", threads=2):
     Returns
     -------
     str
-        Success message if FastQC completes.
+        Message indicating succesful completion.
 
     Raises
     ------
     FileNotFoundError
         If input directory or FASTQ files are not found.
     subprocess.CalledProcessError
-        If FastQC command fails.
+        If FastQC command fails during execution.
     """
+    #Check whether the input directory exists
     if not os.path.isdir(input_dir):
         raise FileNotFoundError(f"Input directory not found: {input_dir}")
 
+    #Collect all FASTQ and FASTQ.GZ files from the input directory
     fastq_files = sorted([
         os.path.join(input_dir, f)
         for f in os.listdir(input_dir)
         if f.endswith(".fastq") or f.endswith(".fastq.gz")
     ])
-
+    #Raise an error if no FASTQ files are detected
     if not fastq_files:
         raise FileNotFoundError(f"No FASTQ files found in: {input_dir}")
 
