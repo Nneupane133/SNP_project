@@ -4,7 +4,10 @@ import subprocess
 
 
 def run_command(cmd, description):
-    """Execute a shell command.
+    """
+    Execute a shell command.
+    This function prints a short description of the step  being executed, displays the full command, and runs it using subprocess. It is intended
+    to standardize external tool execution within the workflow.
 
     Parameters
     ----------
@@ -20,7 +23,7 @@ def run_command(cmd, description):
     Raises
     ------
     subprocess.CalledProcessError
-        If the command execution fails.
+         Raised if the command returns a non-zero exit status.
     """
     print(f"\nRunning: {description}")
     print(" ".join(cmd))
@@ -30,6 +33,10 @@ def run_command(cmd, description):
 def ensure_bwa_index(reference_fasta):
     """Ensure BWA index exists for the reference genome.
 
+    This function checks whether the required BWA index files associated
+    with the reference FASTA file are present. If one or more index files
+    are missing, the function generates them using `bwa index`.
+
     Parameters
     ----------
     reference_fasta : str
@@ -38,6 +45,11 @@ def ensure_bwa_index(reference_fasta):
     Returns
     -------
     None
+
+     Raises
+    ------
+    subprocess.CalledProcessError
+        Raised if BWA indexing fails.
     """
     expected_files = [
         reference_fasta + ext for ext in [".amb", ".ann", ".bwt", ".pac", ".sa"]
@@ -50,7 +62,13 @@ def ensure_bwa_index(reference_fasta):
 
 
 def ensure_fasta_index(reference_fasta):
-    """Ensure samtools FASTA index (.fai) exists.
+    """
+    Ensure that a samtools FASTA index (.fai) exists for the reference genome.
+
+    This function checks for the presence of the `.fai` index file required
+    by samtools. If the file does not exist, it is created using
+    `samtools faidx`.
+
 
     Parameters
     ----------
@@ -60,6 +78,11 @@ def ensure_fasta_index(reference_fasta):
     Returns
     -------
     None
+
+    Raises
+    ------
+    subprocess.CalledProcessError
+        Raised if FASTA indexing fails.
     """
     fai_file = reference_fasta + ".fai"
     if not os.path.exists(fai_file):
@@ -78,10 +101,16 @@ def map_and_extract_unmapped(
 ):
     """Align reads to reference genome and extract unmapped reads.
 
+    
+    This function performs a reference-based mapping workflow using BWA and
+    samtools. It aligns paired-end trimmed FASTQ files to the specified
+    reference genome, converts the output to BAM format, sorts and indexes
+    the BAM file, and extracts unmapped read pairs into separate FASTQ files.
+
     Parameters
     ----------
     sample_id : str
-        Sample identifier (e.g., SRR12620879).
+        Sample identifier used in FASTQ filenames, such as `SRR12620879`..
     reference_fasta : str
         Path to the reference genome FASTA file.
     input_dir : str
@@ -89,12 +118,14 @@ def map_and_extract_unmapped(
     output_dir : str
         Directory to save mapping outputs.
     threads : int
-        Number of CPU threads to use.
+        Number of CPU threads to use for alignment and BAM processing.
+        Default is 4.
 
     Returns
     -------
     str
-        Summary message with output file locations.
+        Message indicating successful completion of alignment and unmapped
+        read extraction.
 
     Raises
     ------
