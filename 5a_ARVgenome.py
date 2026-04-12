@@ -3,11 +3,13 @@ import os
 import subprocess
 import glob
 
-#!/usr/bin/env python3
-import glob
 
 def combine_fasta(input_pattern="sequence*.fasta", output_file="avian_reovirus.fa"):
-    """Combine multiple FASTA files into a single FASTA file.
+    """
+    Combine multiple FASTA files into a single FASTA file.
+
+     This function searches for FASTA files matching a specified pattern,
+    reads their contents, and concatenates them into a single output file.
 
     Parameters
     ----------
@@ -25,6 +27,12 @@ def combine_fasta(input_pattern="sequence*.fasta", output_file="avian_reovirus.f
     ------
     FileNotFoundError
         If no FASTA files are found matching the pattern.
+
+     Notes
+    -----
+    - Input files are processed in sorted order.
+    - Empty files are ignored.
+    - Output file contains concatenated sequences separated by newline.
     """
     fasta_files = sorted(glob.glob(input_pattern))
 
@@ -42,7 +50,17 @@ def combine_fasta(input_pattern="sequence*.fasta", output_file="avian_reovirus.f
     return f"Combined {len(fasta_files)} FASTA files into {output_file}"
 
 
-if __name__ == "__main__":
+    """
+    Execute FASTA combination workflow.
+
+    This function calls `combine_fasta` with default parameters and
+    prints the result or error message.
+
+    Returns
+    -------
+    None
+    """
+    if __name__ == "__main__":
     try:
         message = combine_fasta()
         print(message)
