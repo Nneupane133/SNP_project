@@ -49,13 +49,15 @@ def run_cutadapt(sample_id, input_dir="data", output_dir="trimmed_data",
     r1 = os.path.join(input_dir, f"{sample_id}_1.fastq")
     r2 = os.path.join(input_dir, f"{sample_id}_2.fastq")
 
-    
-out_r1 = os.path.join(output_dir, f"{sample_id}_1.trimmed.fastq")
+     # Define output trimmed file paths
+    out_r1 = os.path.join(output_dir, f"{sample_id}_1.trimmed.fastq")
     out_r2 = os.path.join(output_dir, f"{sample_id}_2.trimmed.fastq")
 
+     # Check if input FASTQ files exist
     if not os.path.exists(r1) or not os.path.exists(r2):
         raise FileNotFoundError(f"FASTQ files for {sample_id} not found.")
 
+     # Construct cutadapt command
     cmd = [
         "cutadapt",
         "-j", str(threads),
@@ -68,6 +70,7 @@ out_r1 = os.path.join(output_dir, f"{sample_id}_1.trimmed.fastq")
         r2
     ]
 
+    # Add quality trimming if specified
     if quality_cutoff is not None:
         cmd.insert(1, "-q")
         cmd.insert(2, f"{quality_cutoff},{quality_cutoff}")
@@ -79,10 +82,11 @@ out_r1 = os.path.join(output_dir, f"{sample_id}_1.trimmed.fastq")
     except subprocess.CalledProcessError as e:
         return f"❌ Error during trimming: {e}"
 
-
-if __name__ == "__main__":
+    #Example sample ID
+    if __name__ == "__main__":
     sample_id = "SRR12620879"
 
+    # Run trimming pipeline
     message = run_cutadapt(
         sample_id=sample_id,
         input_dir="data",
