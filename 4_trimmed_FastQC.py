@@ -4,28 +4,43 @@ import subprocess
 
 
 def run_fastqc(input_dir="trimmed_data", output_dir="trimmed_fastqc_results", threads=2):
-    """Run FastQC on trimmed paired-end FASTQ files in a directory.
+    """
+    Run FastQC on trimmed paired-end FASTQ files in a directory.
+    This function scans the specified input directory for FASTQ or FASTQ.GZ files,
+    and performs quality control analysis using the FastQC tool. The results are
+    saved in the specified output directory.
 
     Parameters
     ----------
     input_dir : str
-        Directory containing FASTQ files.
+        Directory containing trimmed FASTQ files.
     output_dir : str
         Directory where FastQC output files will be saved.
     threads : int
-        Number of threads to use for FastQC.
+        Number of CPU threads to use for processing.
 
     Returns
     -------
     str
-        Success message if FastQC completes.
+        Message indicating successful completion of FastQC analysis.
 
     Raises
     ------
     FileNotFoundError
-        If input directory or FASTQ files are not found.
+         If the input directory does not exist or contains no FASTQ files.
     subprocess.CalledProcessError
-        If FastQC command fails.
+        If the FastQC command fails during execution.
+     Notes
+    -----
+    - This function automatically detects both `.fastq` and `.fastq.gz` files.
+    - FastQC must be installed and available in the system PATH.
+    - The output includes HTML and ZIP reports for each input file.
+
+    Examples
+    --------
+    >>> run_fastqc(input_dir="trimmed_data", output_dir="qc_results", threads=4)
+    'FastQC completed successfully! Results are in: qc_results'
+    """
     """
     if not os.path.isdir(input_dir):
         raise FileNotFoundError(f"Input directory not found: {input_dir}")
