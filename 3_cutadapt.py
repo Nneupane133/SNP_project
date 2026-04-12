@@ -5,7 +5,10 @@ import subprocess
 
 def run_cutadapt(sample_id, input_dir="data", output_dir="trimmed_data",
                  threads=2, trim_5=20, trim_3=20, quality_cutoff=None, min_length=30):
-    """Trim paired-end FASTQ files using cutadapt.
+    """
+    Trim paired-end FASTQ files using cutadapt.
+
+    This function trims reads from both 5' and 3' ends, performs quality filterings and removes reads below a specified minimum length and also remove adapter if present
 
     Parameters
     ----------
@@ -18,26 +21,36 @@ def run_cutadapt(sample_id, input_dir="data", output_dir="trimmed_data",
     threads : int
         Number of CPU threads
     trim_5 : int
-        Bases to trim from 5' end
+       Number of bases to trim from 5' end
     trim_3 : int
-        Bases to trim from 3' end
+        Number of bases to trim from 3' end
     quality_cutoff : int or None
-        Quality trimming cutoff (e.g., 20). If None, skipped.
+        Quality trimming threshold (e.g., 20). If None,quality trimming is  skipped.
     min_length : int
-        Minimum read length to keep
+        Minimum read length to retain after trimming
 
     Returns
     -------
     str
-        Success message
+        Message indicating successful completion or failure.
+
+    Raises
+    -----
+    FileNotFoundError
+        If input FASTQ files are not found.
+    subprocess.CalledProcessError
+        If cutadapt execution fails.
     """
 
+    #Create output directory if it does not exist
     os.makedirs(output_dir, exist_ok=True)
 
+    #Define input FASTQ file paths
     r1 = os.path.join(input_dir, f"{sample_id}_1.fastq")
     r2 = os.path.join(input_dir, f"{sample_id}_2.fastq")
 
-    out_r1 = os.path.join(output_dir, f"{sample_id}_1.trimmed.fastq")
+    
+out_r1 = os.path.join(output_dir, f"{sample_id}_1.trimmed.fastq")
     out_r2 = os.path.join(output_dir, f"{sample_id}_2.trimmed.fastq")
 
     if not os.path.exists(r1) or not os.path.exists(r2):
