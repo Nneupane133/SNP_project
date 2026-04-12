@@ -11,6 +11,10 @@ def run_variant_calling(input_bam="viral_results/viral.sorted.bam",
                         min_qual=20,
                         min_depth=10):
     """Call and filter variants from a mapped BAM file using bcftools.
+    
+    This function generates a raw VCF file from a sorted BAM alignment
+    and then filters the called variants based on minimum quality score
+    and minimum read depth thresholds.
 
     Parameters
     ----------
@@ -40,6 +44,16 @@ def run_variant_calling(input_bam="viral_results/viral.sorted.bam",
         If the input BAM file or reference FASTA file is not found.
     subprocess.CalledProcessError
         If any bcftools command fails.
+
+    Notes
+    -----
+    Output files include:
+    - Raw VCF file
+    - Filtered VCF file
+
+    The filtering expression applied is:
+    - QUAL > min_qual
+    - DP > min_depth
     """
     if not os.path.exists(input_bam):
         raise FileNotFoundError(f"Input BAM file not found: {input_bam}")
@@ -84,8 +98,19 @@ def run_variant_calling(input_bam="viral_results/viral.sorted.bam",
         f"Filtered VCF: {filtered_vcf}"
     )
 
+     """
+    Execute the variant calling and filtering workflow.
 
-if __name__ == "__main__":
+    This function runs the variant calling pipeline using default input,
+    reference, and filtering parameters, and prints the result or error
+    message.
+
+    Returns
+    -------
+    None
+    """
+
+    if __name__ == "__main__":
     try:
         message = run_variant_calling(
             input_bam="viral_results/viral.sorted.bam",
