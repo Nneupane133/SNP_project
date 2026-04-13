@@ -6,9 +6,15 @@ This project aims to identify genomic variations—including single nucleotide p
 
 The pipeline processes raw sequencing data, removes host contamination, identifies viral reads, and performs variant calling to characterize genomic differences relevant to vaccine development.
 
-## Data pre-processing:
+## Data Pre-processing
 
-We will download the raw sequencing data from the Sequence Read Archive(SRA), NCBI. As the sample often contains high levels of host (avian) DNA, the initial quality assessment of the data will be performed using FASTQC. Following that, the reads will be trimmed for adapter sequences, low-quality region, and short reads. Post-trimming quality will again be assessed using FastQC. 
+Raw sequencing data were obtained from the NCBI Sequence Read Archive (SRA). Given that field samples typically contain a high proportion of host (Gallus gallus) DNA, an initial quality control (QC) step was performed to assess sequencing quality, base composition, and adapter contamination.
+
+Quality assessment was conducted using FastQC both before and after trimming. Reads were processed to remove adapter sequences, low-quality bases, and short reads using Cutadapt (or Trimmomatic). This step ensured that only high-quality reads were retained for downstream analyses.
+
+Post-trimming QC confirmed improvements in read quality, including reduced adapter contamination and improved per-base sequence quality.
+
+To ensure reproducibility, all preprocessing steps are implemented as Python scripts that automate tool execution and file handling.
 
 ## Mapping
 
