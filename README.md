@@ -1,4 +1,5 @@
-#Comparative Genomic Analysis of Avian Reovirus Field Strains Against Vaccine Strain S1133
+##Comparative Genomic Analysis of Avian Reovirus Field Strains Against Vaccine Strain S1133
+
 Avian reovirus (ARV) is a segmented double-stranded RNA virus (family Reoviridae) capable of genetic reassortment and mutation, leading to the emergence of new field strains. These genomic changes may affect vaccine efficacy.
 
 This project aims to identify genomic variations—including single nucleotide polymorphisms (SNPs), insertions/deletions (indels), and point mutations—by comparing field strain sequencing data against reference vaccine strains (primarily S1133, along with 2408, 1733, and SS412).
