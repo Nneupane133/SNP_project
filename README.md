@@ -8,45 +8,31 @@ The pipeline processes raw sequencing data, removes host contamination, identifi
 
 ## Data Pre-processing
 
-Raw sequencing data were obtained from the NCBI Sequence Read Archive (SRA). Given that field samples typically contain a high proportion of host (Gallus gallus) DNA, an initial quality control (QC) step was performed to assess sequencing quality, base composition, and adapter contamination.
+Raw sequencing data were obtained from the NCBI Sequence Read Archive (SRA) and were downloaded using [1_download_data.py](https://github.com/Nneupane133/SNP_project/blob/main/1_download_data.py). An initial quality control (QC) step was performed to assess sequencing quality, base composition, and adapter contamination. 
 
-Quality assessment was conducted using FastQC both before and after trimming. Reads were processed to remove adapter sequences, low-quality bases, and short reads using Cutadapt (or Trimmomatic). This step ensured that only high-quality reads were retained for downstream analyses.
+Quality assessment was conducted using FastQC both before trimming using [2_FastQC.py](https://github.com/Nneupane133/SNP_project/blob/main/2_FastQC.py) and after trimming using [4_trimmed-FastQC.py](https://github.com/Nneupane133/SNP_project/blob/main/4_trimmed_FastQC.py). Reads were processed to remove adapter sequences, low-quality bases, and short reads using Cutadapt with the script [3_cutadapt.py](https://github.com/Nneupane133/SNP_project/blob/main/3_cutadapt.py). This step ensured that only high-quality reads were retained for downstream analyses.
 
-Post-trimming QC confirmed improvements in read quality, including reduced adapter contamination and improved per-base sequence quality.
-
-To ensure reproducibility, all preprocessing steps are implemented as Python scripts that automate tool execution and file handling.
+Post-trimming QC confirmed improvements in read quality, including reduced adapter contamination and improved per-base sequence quality.  
 
 ## Host Filtering and Viral Read Identification
 
-To remove host contamination, cleaned reads were aligned to the Gallus gallus reference genome using a short-read aligner (e.g., BWA-MEM or Bowtie2). Reads mapping to the host genome were filtered out using SAMtools, and only unmapped (non-host) reads were retained for viral analysis.
-
-The resulting non-host reads were subjected to sequence similarity searches using BLAST against the NCBI nucleotide database to identify viral contigs. This step enabled the detection of reads corresponding to Avian Reovirus and other potential viral sequences.
-
-This filtering strategy ensures that downstream analyses focus specifically on viral genomic content while minimizing host-derived noise.
+Given that field samples typically contain a high proportion of host DNA, cleaned reads were aligned to the Gallus gallus reference genome [Gallus gallus](https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_000002315.4/) using a short-read aligner (e.g., BWA-MEM) with the script [5_Map.py](https://github.com/Nneupane133/SNP_project/blob/main/5_Map.py). Reads mapping to the host genome were filtered out using SAMtools, and only unmapped (non-host) reads were retained for viral analysis.
 
 ## Viral Mapping and Reference Alignment
 
-The Avian Reovirus reference genome (S1133 strain) was used as the primary reference for alignment. Additional vaccine strains (2408, 1733, SS412) may also be used for comparative purposes.
+The Avian Reovirus reference genome (S1133 strain) was used as the primary reference [avian_reovirus.fa](https://github.com/Nneupane133/SNP_project/blob/main/avian_reovirus.fa) for alignment. Additional vaccine strains (2408, 1733, SS412) may also be used for comparative purposes.
 
-Prior to alignment, the reference genome was indexed using BWA or Bowtie2. Non-host reads were then aligned to the viral reference genome to identify viral read coverage and genomic regions of interest.
+Prior to alignment, the reference genome was indexed using BWA [6_ViralMap.py](https://github.com/Nneupane133/SNP_project/blob/main/6_ViralMap.py). Non-host reads were then aligned to the viral reference genome to identify viral read coverage and genomic regions of interest [6_ViralMap.py](https://github.com/Nneupane133/SNP_project/blob/main/6_ViralMap.py).
 
-Aligned reads were processed using SAMtools to generate sorted and indexed BAM files, which were used for downstream variant analysis. 
+Aligned reads were processed using SAMtools to generate sorted and indexed BAM files [6_ViralMap.py](https://github.com/Nneupane133/SNP_project/blob/main/6_ViralMap.py), which were used for downstream variant analysis. 
 
 ## Variant Calling and Analysis
 
-Variants, including single nucleotide polymorphisms (SNPs) and insertions/deletions (indels), were identified using bcftools. Variant calling was performed on aligned BAM files to generate Variant Call Format (VCF) files.
+Variants, including single nucleotide polymorphisms (SNPs) and insertions/deletions (indels), were identified using bcftools [7_variantcalling.py](https://github.com/Nneupane133/SNP_project/blob/main/7_variantcalling.py). Variant calling was performed on aligned BAM files to generate Variant Call Format (VCF) files.
 
-Post-processing of VCF files included filtering based on:
-- Minimum read depth
-- Quality score thresholds
-- Variant type (SNPs vs indels)
+## SNP visualization
 
-Custom Python scripts were developed to:
-- Extract high-impact mutations
-- Automate variant filtering workflows
-- Calculate sequence identity relative to reference strains
-
-These scripts improve reproducibility and allow flexible adaptation of filtering criteria.
+The generated [viral.sorted.bam](https://github.com/Nneupane133/SNP_project/blob/main/viral_results/viral.sorted.bam.gz) file will be analyzed with the [avian_reovirus.fa](https://github.com/Nneupane133/SNP_project/blob/main/avian_reovirus.fa) using the software [Integrative Genomic Viewer](https://igv.org/) to visualize the SNPs.
 
 ## Bioinformatics Pipeline Overview
 
@@ -60,9 +46,10 @@ The pipeline consists of the following steps:
 6. Identify viral reads using BLAST
 7. Align reads to viral reference genome
 8. Perform variant calling using bcftools
-9. Filter and analyze variants using custom Python scripts
+9. Visualize the SNPs using the software [Integrative Genomic Viewer](https://igv.org/)
 
 Each step is automated using Python scripts to ensure reproducibility and scalability.
+
 # Feedback
 
 Your proposed project should create opportunities for you to use scripting to
