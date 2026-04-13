@@ -24,10 +24,13 @@ The resulting non-host reads were subjected to sequence similarity searches usin
 
 This filtering strategy ensures that downstream analyses focus specifically on viral genomic content while minimizing host-derived noise.
 
+## Viral Mapping and Reference Alignment
 
-## Mapping
+The Avian Reovirus reference genome (S1133 strain) was used as the primary reference for alignment. Additional vaccine strains (2408, 1733, SS412) may also be used for comparative purposes.
 
-The sequence that maps to the Gallus gallus (chicken) genome will be filtered out. The contigs from the non-host reads and viral contigs will be determined using NCBI-BLAST which will help to find contigs with sequences matching GenBank reovirus sequences. The clean reads will then be aligned with the reference genome. Before mapping, the reference genome will be indexed. The non-host sequences will then be aligned to identified viral contigs to determine the number of viral reads. The gene sequence will be then compared to vaccine strain S1133 full genome. 
+Prior to alignment, the reference genome was indexed using BWA or Bowtie2. Non-host reads were then aligned to the viral reference genome to identify viral read coverage and genomic regions of interest.
+
+Aligned reads were processed using SAMtools to generate sorted and indexed BAM files, which were used for downstream variant analysis. 
 
 ## Proposed bioinformatics pipeline
 
