@@ -61,16 +61,21 @@ Each step is automated using Python scripts to ensure reproducibility and scalab
 ```bash
 git clone https://github.com/Nneupane133/SNP_project.git
 cd SNP_project
-
+```
 2. Create and activate environment:
 
+```bash
 conda env create -f environment.yml
 conda activate SNP_project
+```
 
 3. Verify installation:
 
+```bash
 python --version
+```
 
+4. That's it! You are ready to run the SNP analysis pipeline. 
 # Feedback
 
 Your proposed project should create opportunities for you to use scripting to
