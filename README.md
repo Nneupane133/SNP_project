@@ -54,6 +54,24 @@ The pipeline consists of the following steps:
 
 Each step is automated using Python scripts to ensure reproducibility and scalability.
 
+## Limitations and Future Work
+
+## Limitations
+
+- The pipeline is currently optimized for a specific dataset and reference genome, which may limit generalization to other viruses or hosts without modification.  
+- Variant calling relies on predefined quality and depth thresholds, which may not capture low-frequency variants accurately.  
+- The workflow assumes high-quality input FASTQ files; poor sequencing quality can affect downstream results.  
+- Limited error handling and logging may make debugging difficult for new users.    
+
+## Future Work
+
+- Generalize the pipeline to support multiple species, hosts, and reference genomes with minimal user input.  
+- Implement advanced variant filtering and annotation steps to improve biological interpretation.  
+- Add parallel processing and workflow management (e.g., Snakemake or Nextflow) to improve scalability and efficiency.  
+- Improve documentation with example datasets, expected outputs, and visualization of results.  
+- Develop visualization modules for SNP distribution, phylogenetic analysis, and comparative genomics.  
+- Enhance error handling, logging, and user-friendly command-line interfaces. 
+ 
 ## Installation
 
 1. Clone the repository:
@@ -76,6 +94,7 @@ python --version
 ```
 
 4. That's it! You are ready to run the SNP analysis pipeline. 
+
 # Feedback
 
 Your proposed project should create opportunities for you to use scripting to
