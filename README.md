@@ -6,6 +6,10 @@ This project aims to identify genomic variations—including single nucleotide p
 
 The pipeline processes raw sequencing data, removes host contamination, identifies viral reads, and performs variant calling to characterize genomic differences relevant to vaccine development.
 
+## Conda environment
+
+Since, most of the scripts that we will be working need external modules. Therefore, we created an conda environment called [SNP-project](https://github.com/Nneupane133/SNP_project/blob/main/environment.yml) which will include all the necessary modules that we will be requiring for this project. 
+
 ## Data Pre-processing
 
 Raw sequencing data were obtained from the NCBI Sequence Read Archive (SRA) and were downloaded using [1_download_data.py](https://github.com/Nneupane133/SNP_project/blob/main/1_download_data.py). An initial quality control (QC) step was performed to assess sequencing quality, base composition, and adapter contamination. 
