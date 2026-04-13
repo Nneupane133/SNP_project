@@ -1,6 +1,10 @@
-# A study of genomic changes in the field strain of Avian Reovirus compared to the vaccine strain 
 
-Avian reovirus is a 10 segmented double-stranded RNA (dsRNA) virus belonging to the family Reoviridae. During replications, these genome segmentscan undergo genetic reassortment  and mutate resulting in new strains of Avian reovirus emerging in the field condition. Determining the genomic structure of this field strain is therefore important for vaccine production. The objective of this project is to identify single nucleotide polymorphisms (SNPs), point mutations, insertions/ deletions (indels) in the Avian Reovirus by comparing the field sample sequence against the reference strains, S1133 (primary reference). This strain of ARV, along with 2408, 1733, SS412 are commonly used for vaccine production. 
+#Comparative Genomic Analysis of Avian Reovirus Field Strains Against Vaccine Strain S1133
+Avian reovirus (ARV) is a segmented double-stranded RNA virus (family Reoviridae) capable of genetic reassortment and mutation, leading to the emergence of new field strains. These genomic changes may affect vaccine efficacy.
+
+This project aims to identify genomic variations—including single nucleotide polymorphisms (SNPs), insertions/deletions (indels), and point mutations—by comparing field strain sequencing data against reference vaccine strains (primarily S1133, along with 2408, 1733, and SS412).
+
+The pipeline processes raw sequencing data, removes host contamination, identifies viral reads, and performs variant calling to characterize genomic differences relevant to vaccine development.
 
 ## Data pre-processing:
 
