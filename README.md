@@ -47,17 +47,22 @@ Custom Python scripts were developed to:
 - Calculate sequence identity relative to reference strains
 
 These scripts improve reproducibility and allow flexible adaptation of filtering criteria.
-## Proposed bioinformatics pipeline
 
-1.	Quality control and trimming: FastQC and Trimmomatic
-2.	Alignment and Filtering tools: Bowtie2 or BWA-MEM, Samtools, HiSAT2
-3.	Variant calling and assembly: To generate VCF (BCF tools)
-4.	Python Analysis Scripts
-    a.	Filter VCF files = extract only “High Impact” mutations.
-    b.	Automate BLAST/DIAMOND
-    c.	Calculate Identity
+## Bioinformatics Pipeline Overview
 
+The pipeline consists of the following steps:
 
+1. Download sequencing data from SRA
+2. Perform initial quality control (FastQC)
+3. Trim adapters and low-quality reads
+4. Perform post-trimming QC
+5. Map reads to host genome and remove host contamination
+6. Identify viral reads using BLAST
+7. Align reads to viral reference genome
+8. Perform variant calling using bcftools
+9. Filter and analyze variants using custom Python scripts
+
+Each step is automated using Python scripts to ensure reproducibility and scalability.
 # Feedback
 
 Your proposed project should create opportunities for you to use scripting to
