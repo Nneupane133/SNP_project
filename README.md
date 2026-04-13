@@ -32,6 +32,21 @@ Prior to alignment, the reference genome was indexed using BWA or Bowtie2. Non-h
 
 Aligned reads were processed using SAMtools to generate sorted and indexed BAM files, which were used for downstream variant analysis. 
 
+## Variant Calling and Analysis
+
+Variants, including single nucleotide polymorphisms (SNPs) and insertions/deletions (indels), were identified using bcftools. Variant calling was performed on aligned BAM files to generate Variant Call Format (VCF) files.
+
+Post-processing of VCF files included filtering based on:
+- Minimum read depth
+- Quality score thresholds
+- Variant type (SNPs vs indels)
+
+Custom Python scripts were developed to:
+- Extract high-impact mutations
+- Automate variant filtering workflows
+- Calculate sequence identity relative to reference strains
+
+These scripts improve reproducibility and allow flexible adaptation of filtering criteria.
 ## Proposed bioinformatics pipeline
 
 1.	Quality control and trimming: FastQC and Trimmomatic
