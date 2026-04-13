@@ -12,7 +12,7 @@ Raw sequencing data were obtained from the NCBI Sequence Read Archive (SRA) and 
 
 Quality assessment was conducted using FastQC both before trimming using [2_FastQC.py](https://github.com/Nneupane133/SNP_project/blob/main/2_FastQC.py) and after trimming using [4_trimmed-FastQC.py](https://github.com/Nneupane133/SNP_project/blob/main/4_trimmed_FastQC.py). Reads were processed to remove adapter sequences, low-quality bases, and short reads using Cutadapt with the script [3_cutadapt.py](https://github.com/Nneupane133/SNP_project/blob/main/3_cutadapt.py). This step ensured that only high-quality reads were retained for downstream analyses.
 
-Post-trimming QC confirmed improvements in read quality, including reduced adapter contamination and improved per-base sequence quality. We can see how ![read quality after trimming](after_trimming.png) has better Phred score than ![read quality before trimming](before_trimming.png). 
+Post-trimming QC confirmed improvements in read quality, including reduced adapter contamination and improved per-base sequence quality. We can see how ![read quality after trimming](/Users/nabinneupane/Scripting/SNP_project/after_trimming.png) has better Phred score than ![read quality before trimming](/Users/nabinneupane/Scripting/SNP_project/before_trimming.png). 
 
 ## Host Filtering and Viral Read Identification
 
