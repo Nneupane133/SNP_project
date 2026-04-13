@@ -16,6 +16,15 @@ Post-trimming QC confirmed improvements in read quality, including reduced adapt
 
 To ensure reproducibility, all preprocessing steps are implemented as Python scripts that automate tool execution and file handling.
 
+## Host Filtering and Viral Read Identification
+
+To remove host contamination, cleaned reads were aligned to the Gallus gallus reference genome using a short-read aligner (e.g., BWA-MEM or Bowtie2). Reads mapping to the host genome were filtered out using SAMtools, and only unmapped (non-host) reads were retained for viral analysis.
+
+The resulting non-host reads were subjected to sequence similarity searches using BLAST against the NCBI nucleotide database to identify viral contigs. This step enabled the detection of reads corresponding to Avian Reovirus and other potential viral sequences.
+
+This filtering strategy ensures that downstream analyses focus specifically on viral genomic content while minimizing host-derived noise.
+
+
 ## Mapping
 
 The sequence that maps to the Gallus gallus (chicken) genome will be filtered out. The contigs from the non-host reads and viral contigs will be determined using NCBI-BLAST which will help to find contigs with sequences matching GenBank reovirus sequences. The clean reads will then be aligned with the reference genome. Before mapping, the reference genome will be indexed. The non-host sequences will then be aligned to identified viral contigs to determine the number of viral reads. The gene sequence will be then compared to vaccine strain S1133 full genome. 
