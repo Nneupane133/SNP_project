@@ -12,27 +12,27 @@ Since, most of the scripts that we will be working need external modules. Theref
 
 ## Data Pre-processing
 
-Raw sequencing data were obtained from the NCBI Sequence Read Archive (SRA) and were downloaded using [1_download_data.py](https://github.com/Nneupane133/SNP_project/blob/main/1_download_data.py). An initial quality control (QC) step was performed to assess sequencing quality, base composition, and adapter contamination. 
+Raw sequencing data were obtained from the NCBI Sequence Read Archive (SRA) and were downloaded using [Download_data.py](https://github.com/Nneupane133/SNP_project/blob/main/Download_data.py). An initial quality control (QC) step was performed to assess sequencing quality, base composition, and adapter contamination. 
 
-Quality assessment was conducted using FastQC both before trimming using [2_FastQC.py](https://github.com/Nneupane133/SNP_project/blob/main/2_FastQC.py) and after trimming using [4_trimmed-FastQC.py](https://github.com/Nneupane133/SNP_project/blob/main/4_trimmed_FastQC.py). Reads were processed to remove adapter sequences, low-quality bases, and short reads using Cutadapt with the script [3_cutadapt.py](https://github.com/Nneupane133/SNP_project/blob/main/3_cutadapt.py). This step ensured that only high-quality reads were retained for downstream analyses.
+Quality assessment was conducted using FastQC both before trimming using [FastQC.py](https://github.com/Nneupane133/SNP_project/blob/main/FastQC.py) and after trimming using [Trimmed-FastQC.py](https://github.com/Nneupane133/SNP_project/blob/main/Trimmed_FastQC.py). Reads were processed to remove adapter sequences, low-quality bases, and short reads using Cutadapt with the script [Cutadapt.py](https://github.com/Nneupane133/SNP_project/blob/main/Cutadapt.py). This step ensured that only high-quality reads were retained for downstream analyses.
 
 Post-trimming QC confirmed improvements in read quality, including reduced adapter contamination and improved per-base sequence quality. 
 
 ## Host Filtering and Viral Read Identification
 
-Given that field samples typically contain a high proportion of host DNA, cleaned reads were aligned to the Gallus gallus reference genome [Gallus gallus](https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_000002315.4/) using a short-read aligner (e.g., BWA-MEM) with the script [5_Map.py](https://github.com/Nneupane133/SNP_project/blob/main/5_Map.py). Reads mapping to the host genome were filtered out using SAMtools, and only unmapped (non-host) reads were retained for viral analysis.
+Given that field samples typically contain a high proportion of host DNA, cleaned reads were aligned to the Gallus gallus reference genome [Gallus gallus](https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_000002315.4/) using a short-read aligner (e.g., BWA-MEM) with the script [Map_Chicken.py](https://github.com/Nneupane133/SNP_project/blob/main/Map_Chicken.py). Reads mapping to the host genome were filtered out using SAMtools, and only unmapped (non-host) reads were retained for viral analysis.
 
 ## Viral Mapping and Reference Alignment
 
 The Avian Reovirus reference genome (S1133 strain) was used as the primary reference [avian_reovirus.fa](https://github.com/Nneupane133/SNP_project/blob/main/avian_reovirus.fa) for alignment. Additional vaccine strains (2408, 1733, SS412) may also be used for comparative purposes.
 
-Prior to alignment, the reference genome was indexed using BWA [6_ViralMap.py](https://github.com/Nneupane133/SNP_project/blob/main/6_ViralMap.py). Non-host reads were then aligned to the viral reference genome to identify viral read coverage and genomic regions of interest [6_ViralMap.py](https://github.com/Nneupane133/SNP_project/blob/main/6_ViralMap.py).
+Prior to alignment, the reference genome was indexed using BWA [ViralMap.py](https://github.com/Nneupane133/SNP_project/blob/main/ViralMap.py). Non-host reads were then aligned to the viral reference genome to identify viral read coverage and genomic regions of interest [ViralMap.py](https://github.com/Nneupane133/SNP_project/blob/main/ViralMap.py).
 
-Aligned reads were processed using SAMtools to generate sorted and indexed BAM files [6_ViralMap.py](https://github.com/Nneupane133/SNP_project/blob/main/6_ViralMap.py), which were used for downstream variant analysis. 
+Aligned reads were processed using SAMtools to generate sorted and indexed BAM files [ViralMap.py](https://github.com/Nneupane133/SNP_project/blob/main/ViralMap.py), which were used for downstream variant analysis. 
 
 ## Variant Calling and Analysis
 
-Variants, including single nucleotide polymorphisms (SNPs) and insertions/deletions (indels), were identified using bcftools [7_variantcalling.py](https://github.com/Nneupane133/SNP_project/blob/main/7_variantcalling.py). Variant calling was performed on aligned BAM files to generate Variant Call Format (VCF) files.
+Variants, including single nucleotide polymorphisms (SNPs) and insertions/deletions (indels), were identified using bcftools [Variantcalling.py](https://github.com/Nneupane133/SNP_project/blob/main/Variantcalling.py). Variant calling was performed on aligned BAM files to generate Variant Call Format (VCF) files.
 
 ## SNP visualization
 
@@ -93,7 +93,25 @@ conda activate SNP_project
 python --version
 ```
 
-4. That's it! You are ready to run the SNP analysis pipeline. 
+4. Run scripts in the following order
+
+```bash
+python3 Download_data.py 
+python3 FastQC.py 
+python3 Cutadapt.py 
+python3 Trimmed_FastQC.py 
+python3 Map_Chicken.py 
+python3 ARVgenome_assembly.py 
+python3 ViralMap.py 
+python3 Variantcalling.py 
+```
+
+5. Variant visualization
+
+
+The file "viral.sorted.bam" file generated during Variantcalling.py can be visualized for SNPs using [Integrative Genomic Viewer](https://igv.org/)
+
+
 
 # Feedback
 
