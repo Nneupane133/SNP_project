@@ -91,24 +91,31 @@ conda activate SNP_project
 python --version
 ```
 
-4. Run scripts in the following order
+4.Tutorial:  Run scripts in the following order
 
 ```bash
+###Step 1: Download example data
 python3 Download_data.py 
+### Step 2: Run quality control
 python3 FastQC.py 
+### Step 3: Trim reads
 python3 Cutadapt.py 
+### Step 4:  Run quality control on trimmed file
 python3 Trimmed_FastQC.py 
+### Step 5: Run mapping and variant calling
 python3 Map_Chicken.py 
 python3 ARVgenome_assembly.py 
 python3 ViralMap.py 
 python3 Variantcalling.py 
 ```
+###Expected Output:
+- viral.sorted.bam
+- viral_variants.vcf
+- QC reports in fastqc_results/
 
 5. Variant visualization
 
-
 The file "viral.sorted.bam" file generated during Variantcalling.py can be visualized for SNPs using [Integrative Genomic Viewer](https://igv.org/)
-
 
 
 # Feedback
