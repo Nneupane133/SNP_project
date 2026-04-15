@@ -41,7 +41,6 @@ def run_fastqc(input_dir="trimmed_data", output_dir="trimmed_fastqc_results", th
     >>> run_fastqc(input_dir="trimmed_data", output_dir="qc_results", threads=4)
     'FastQC completed successfully! Results are in: qc_results'
     """
-    """
     if not os.path.isdir(input_dir):
         raise FileNotFoundError(f"Input directory not found: {input_dir}")
 
