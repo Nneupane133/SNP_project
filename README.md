@@ -108,7 +108,7 @@ python3 ARVgenome_assembly.py
 python3 ViralMap.py 
 python3 Variantcalling.py 
 ```
-###Expected Output:
+## Expected Output:
 - viral.sorted.bam
 - viral_variants.vcf
 - QC reports in fastqc_results/
