@@ -77,10 +77,10 @@ def run_cutadapt(sample_id, input_dir="data", output_dir="trimmed_data",
 
     try:
         subprocess.run(cmd, check=True)
-        return f"✅ Trimmed files saved in: {output_dir}"
+        return f"Trimmed files saved in: {output_dir}"
 
     except subprocess.CalledProcessError as e:
-        return f"❌ Error during trimming: {e}"
+        return f" Error during trimming: {e}"
 
     #Example sample ID
     if __name__ == "__main__":
