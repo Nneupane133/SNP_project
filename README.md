@@ -54,22 +54,6 @@ The pipeline consists of the following steps:
 
 Each step is automated using Python scripts to ensure reproducibility and scalability.
 
-## Limitations and Future Work
-
-## Limitations
-
-- The pipeline is optimized for a specific dataset and reference genome, limiting its generalizability to other viruses or host organisms without significant modification.  
-- Variant calling depends on predefined quality and depth thresholds, which may inadequately detect low-frequency variants and introduce systematic bias.  
-- The workflow requires high-quality input FASTQ files, as poor sequencing quality can substantially degrade the accuracy of downstream analyses.  
-
-
-## Future Work
-
-- Generalize the pipeline to support multiple species, hosts, and reference genomes with minimal user input.  
-- Implement advanced variant filtering and annotation steps to improve biological interpretation.    
-- Develop visualization modules for SNP distribution, phylogenetic analysis, and comparative genomics.  
-- Enhance error handling, logging, and user-friendly command-line interfaces. 
- 
 ## Installation
 
 1. Clone the repository:
@@ -108,7 +92,8 @@ python3 ARVgenome_assembly.py
 python3 ViralMap.py 
 python3 Variantcalling.py 
 ```
-## Expected Output:
+ **Expected Output:**
+
 - viral.sorted.bam
 - viral_variants.vcf
 - QC reports in fastqc_results/
@@ -117,6 +102,25 @@ python3 Variantcalling.py
 
 The file "viral.sorted.bam" file generated during Variantcalling.py can be visualized for SNPs using [Integrative Genomic Viewer](https://igv.org/)
 
+
+## Limitations and Future Work
+
+### Limitations
+
+- The pipeline is optimized for a specific dataset and reference genome, limiting its generalizability to other viruses or host organisms without significant modification.  
+- Variant calling depends on predefined quality and depth thresholds, which may inadequately detect low-frequency variants and introduce systematic bias.  
+- The workflow requires high-quality input FASTQ files, as poor sequencing quality can substantially degrade the accuracy of downstream analyses.  
+
+
+### Future Work
+
+
+- Update the script to run in the supercomputer. 
+- Generalize the pipeline to support multiple species, hosts, and reference genomes with minimal user input.  
+- Implement advanced variant filtering and annotation steps to improve biological interpretation.    
+- Develop visualization modules for SNP distribution, phylogenetic analysis, and comparative genomics.  
+- Enhance error handling, logging, and user-friendly command-line interfaces. 
+ 
 
 # Feedback
 
