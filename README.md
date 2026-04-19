@@ -56,8 +56,6 @@ Each step is automated using Python scripts to ensure reproducibility and scalab
 
 ## Project Structure
 
-## Project Structure
-
 ```bash
 SNP_project/
 │── scripts/
