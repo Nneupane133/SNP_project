@@ -54,6 +54,21 @@ The pipeline consists of the following steps:
 
 Each step is automated using Python scripts to ensure reproducibility and scalability.
 
+## Project Structure
+
+SNP_project/
+│── scripts/
+│   ├── Download_data.py
+│   ├── FastQC.py
+│   ├── Cutadapt.py
+│   ├── ViralMap.py
+│   ├── Variantcalling.py
+│
+│── data/
+│── results/
+│── environment.yml
+│── README.md
+
 ## Installation
 
 1. Clone the repository:
