@@ -58,9 +58,9 @@ Each step is automated using Python scripts to ensure reproducibility and scalab
 
 ## Limitations
 
-- The pipeline is currently optimized for a specific dataset and reference genome, which may limit generalization to other viruses or hosts without modification.  
-- Variant calling relies on predefined quality and depth thresholds, which may not capture low-frequency variants accurately.  
-- The workflow assumes high-quality input FASTQ files; poor sequencing quality can affect downstream results.  
+- The pipeline is optimized for a specific dataset and reference genome, limiting its generalizability to other viruses or host organisms without significant modification.  
+- Variant calling depends on predefined quality and depth thresholds, which may inadequately detect low-frequency variants and introduce systematic bias.  
+- The workflow requires high-quality input FASTQ files, as poor sequencing quality can substantially degrade the accuracy of downstream analyses.  
 
 
 ## Future Work
