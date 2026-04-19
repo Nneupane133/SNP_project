@@ -58,12 +58,11 @@ Each step is automated using Python scripts to ensure reproducibility and scalab
 
 SNP_project/
 │── scripts/
-│   ├── Download_data.py
-│   ├── FastQC.py
-│   ├── Cutadapt.py
-│   ├── ViralMap.py
-│   ├── Variantcalling.py
-│
+│ ├── Download_data.py
+│ ├── FastQC.py
+│ ├── Cutadapt.py
+│ ├── ViralMap.py
+│ ├── Variantcalling.py
 │── data/
 │── results/
 │── environment.yml
